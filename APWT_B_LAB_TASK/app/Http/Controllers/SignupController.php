@@ -55,10 +55,8 @@ class SignupController extends Controller
         $customer->user_type = "active";
         $customer->date_added = "current_date";
         $customer->last_updated = "null";
-        if ($request->password == $request->confirm_password) {
-            $customer->save();
-            return redirect()->route('account.login');
-        }
+        $customer->save();
+        return redirect()->route('account.login');
     }
 
     /**
