@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Route::get('/login', 'LoginController@login')->name('account.login');
 Route::post('/login', 'LoginController@verify');
+Route::get('/logout', 'LogoutController@index');
 // Group Routes
 Route::group(['middleware' => ['sess']], function () {
     Route::get('admin/home', 'AdminController@index')->middleware('sess');

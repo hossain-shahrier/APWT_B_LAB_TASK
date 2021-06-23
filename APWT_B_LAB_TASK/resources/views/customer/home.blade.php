@@ -1,1 +1,2 @@
-<h1>I am from Customer</h1>
+<h1>Welcome back, {{session('username')}}</h1>
+<a href="/logout">Logout</a>
