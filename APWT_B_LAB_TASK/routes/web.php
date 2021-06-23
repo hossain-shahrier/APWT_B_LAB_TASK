@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/login', 'LoginController@login')->name('account.login');
+Route::post('/login', 'LoginController@verify');
+// Group Routes
+Route::group(['middleware' => ['sess']], function () {
+    Route::get('admin/home', 'AdminController@index')->middleware('sess');
+    Route::get('customer/home', 'CustomerController@index')->middleware('sess');
+    Route::get('accountant/home', 'AccountantController@index')->middleware('sess');
+    Route::get('vendor/home', 'VendorController@index')->middleware('sess');
+    Route::get('sell/home', 'SellController@index')->middleware('sess');
 });
