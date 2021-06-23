@@ -54,4 +54,8 @@ class LoginController extends Controller
             return redirect('/login');
         }
     }
+    public function signup()
+    {
+        return view('account.signup');
+    }
 }

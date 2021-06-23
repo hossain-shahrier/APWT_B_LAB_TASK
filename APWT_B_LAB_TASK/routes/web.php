@@ -21,8 +21,11 @@ Route::get('/', function () {
 Route::get('/login', 'LoginController@login')->name('account.login');
 Route::post('/login', 'LoginController@verify');
 Route::get('/logout', 'LogoutController@index');
+Route::get('/signup', 'LoginController@signup');
+Route::post('/signup', 'SignupController@store');
 // Group Routes
 Route::group(['middleware' => ['sess']], function () {
+
     Route::get('admin/home', 'AdminController@index')->middleware('sess');
     Route::get('customer/home', 'CustomerController@index')->middleware('sess');
     Route::get('accountant/home', 'AccountantController@index')->middleware('sess');

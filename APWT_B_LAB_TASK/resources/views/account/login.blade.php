@@ -28,7 +28,7 @@
 
             </table>
         </form>
-        <p>Don't have account? <a href="/user">Register</a></p>
+        <p>Don't have account? <a href="/signup">Register</a></p>
     </center>
     {{session('msg')}}
     <br>
