@@ -30,11 +30,13 @@ Route::group(['middleware' => ['sess']], function () {
     Route::get('customer/home', 'CustomerController@index')->middleware('sess');
     Route::get('accountant/home', 'AccountantController@index')->middleware('sess');
     Route::get('vendor/home', 'VendorController@index')->middleware('sess');
-    Route::get('sell/home', 'SellController@index')->middleware('sess');
+    Route::get('sell/home', 'SellController@index')->middleware('sess')->name('sell.home');
 });
 $chanel = "system/sales";
+Route::get($chanel . "/physical_store", 'SellController@physical_store');
+Route::post($chanel . "/physical_store", 'SellController@physical_store_products');
 Route::get($chanel . "/physical_store", 'SellController@physical_store');
 Route::get($chanel . "/social_media", 'SellController@social_media');
 Route::get($chanel . "/ecommerce", 'SellController@ecommerce');
 Route::get($chanel . "/physical_store/sales_log", 'SellController@sales_log');
-Route::post($chanel . "/physical_store/sales_log", 'SellController@sales_log_store');
+// Route::post($chanel . "/physical_store/sales_log", 'SellController@sales_log_store');

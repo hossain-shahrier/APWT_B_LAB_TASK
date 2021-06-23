@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SaleLogRequest;
 use App\Models\PhysicalStoreChanel;
 use App\Models\Sell;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -50,10 +51,13 @@ class SellController extends Controller
     {
         return view('sell.sales_log');
     }
-    public function sales_log_store(SaleLogRequest $request)
+    public function physical_store_products(SaleLogRequest $request)
     {
-
         $physical_store_channel = new  PhysicalStoreChanel();
+        $physical_store_channel->current_date = session('current_date');
+        $physical_store_channel->last_seven_days = session('last_seven_days');
+        $physical_store_channel->avg_sales = session('avg_sales');
+        $physical_store_channel->max_sold = session('max_sold');
         $physical_store_channel->customer_name = $request->customer_name;
         $physical_store_channel->address = $request->address;
         $physical_store_channel->phone = $request->phone;
@@ -63,8 +67,9 @@ class SellController extends Controller
         $physical_store_channel->quantity = $request->quantity;
         $physical_store_channel->total_price = $request->total_price;
         $physical_store_channel->date_sold = "current_date";
-        $physical_store_channel->payment_type = "cash/card/onine";
+        $physical_store_channel->payment_type = "cash/card/online";
         $physical_store_channel->status = "sold";
+
         $physical_store_channel->save();
         return redirect()->route('sell.home');
     }
